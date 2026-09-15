@@ -1,0 +1,865 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VUTADT - Vaal University of Technology Application & Development Team</title>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* RESET & BASE STYLES */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: #090d16;
+            color: #f1f5f9;
+            line-height: 1.6;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        button, input, select, textarea {
+            font-family: inherit;
+        }
+
+        /* UTILITIES & CONTAINER */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+
+        .section-padding {
+            padding: 5rem 0;
+        }
+
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.25rem 0.75rem;
+            border-radius: 9999px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            background-color: rgba(37, 99, 235, 0.1);
+            color: #60a5fa;
+            border: 1px solid rgba(37, 99, 235, 0.2);
+            margin-bottom: 1.5rem;
+        }
+
+        .pulse-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background-color: #60a5fa;
+        }
+
+        /* NAVIGATION */
+        .navbar {
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            background-color: rgba(15, 23, 42, 0.85);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid #1e293b;
+        }
+
+        .nav-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 4rem;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .brand-icon {
+            width: 2.5rem;
+            height: 2.5rem;
+            border-radius: 0.5rem;
+            background-color: #2563eb;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 900;
+            font-size: 1.25rem;
+            color: #ffffff;
+            box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+        }
+
+        .brand-text-title {
+            font-size: 1.125rem;
+            font-weight: 700;
+            color: #ffffff;
+            line-height: 1.2;
+        }
+
+        .brand-text-sub {
+            font-size: 0.75rem;
+            color: #94a3b8;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+            font-size: 0.875rem;
+            font-weight: 500;
+        }
+
+        .nav-link {
+            color: #cbd5e1;
+            transition: color 0.2s;
+        }
+
+        .nav-link:hover {
+            color: #60a5fa;
+        }
+
+        .btn-primary {
+            background-color: #2563eb;
+            color: #ffffff;
+            padding: 0.6rem 1.25rem;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            font-size: 0.875rem;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.2s, transform 0.2s;
+            display: inline-block;
+            text-align: center;
+        }
+
+        .btn-primary:hover {
+            background-color: #1d4ed8;
+        }
+
+        .btn-secondary {
+            background-color: #1e293b;
+            color: #e2e8f0;
+            padding: 0.6rem 1.25rem;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            font-size: 0.875rem;
+            border: 1px solid #334155;
+            cursor: pointer;
+            transition: background-color 0.2s;
+            display: inline-block;
+            text-align: center;
+        }
+
+        .btn-secondary:hover {
+            background-color: #334155;
+        }
+
+        /* HERO SECTION */
+        .hero {
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0f172a 100%);
+            padding: 5rem 0 4rem 0;
+            border-bottom: 1px solid #1e293b;
+            text-align: center;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .hero-title {
+            font-size: 2.75rem;
+            font-weight: 800;
+            line-height: 1.2;
+            color: #ffffff;
+            margin-bottom: 1.5rem;
+        }
+
+        .highlight-text {
+            background: linear-gradient(to right, #60a5fa, #818cf8);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero-description {
+            font-size: 1.125rem;
+            color: #94a3b8;
+            margin-bottom: 2rem;
+        }
+
+        .hero-cta {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+        }
+
+        /* METRICS */
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 1rem;
+            margin-top: 4rem;
+            padding-top: 2.5rem;
+            border-top: 1px solid rgba(30, 41, 59, 0.8);
+        }
+
+        .metric-card {
+            text-align: center;
+            padding: 1rem;
+        }
+
+        .metric-value {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #ffffff;
+        }
+
+        .metric-label {
+            font-size: 0.75rem;
+            color: #94a3b8;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            font-weight: 600;
+        }
+
+        /* SECTION HEADERS */
+        .section-header {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 3rem;
+        }
+
+        @media (min-width: 768px) {
+            .section-header {
+                flex-direction: row;
+                align-items: flex-end;
+            }
+        }
+
+        .section-title {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 0.5rem;
+        }
+
+        .section-subtitle {
+            color: #94a3b8;
+            font-size: 0.95rem;
+        }
+
+        /* FILTER BUTTONS */
+        .filter-group {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+            margin-top: 1rem;
+        }
+
+        .filter-btn {
+            background-color: #1e293b;
+            color: #94a3b8;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 0.5rem;
+            font-size: 0.75rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .filter-btn.active, .filter-btn:hover {
+            background-color: #2563eb;
+            color: #ffffff;
+        }
+
+        /* PROJECTS GRID & CARDS */
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .card {
+            background-color: #0f172a;
+            border: 1px solid #1e293b;
+            border-radius: 1rem;
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: transform 0.3s ease, border-color 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            border-color: #334155;
+        }
+
+        .card-top {
+            margin-bottom: 1.5rem;
+        }
+
+        .card-header-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .cat-tag {
+            font-size: 0.7rem;
+            padding: 0.2rem 0.5rem;
+            border-radius: 0.25rem;
+            background-color: rgba(37, 99, 235, 0.1);
+            color: #60a5fa;
+            border: 1px solid rgba(37, 99, 235, 0.2);
+            font-weight: 600;
+        }
+
+        .status-tag {
+            font-size: 0.75rem;
+            color: #64748b;
+            display: flex;
+            align-items: center;
+            gap: 0.35rem;
+        }
+
+        .status-dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background-color: #34d399;
+        }
+
+        .card-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 0.5rem;
+        }
+
+        .card-desc {
+            font-size: 0.875rem;
+            color: #94a3b8;
+            line-height: 1.5;
+        }
+
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.4rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .tech-pill {
+            font-size: 0.7rem;
+            font-family: monospace;
+            padding: 0.2rem 0.4rem;
+            background-color: #020617;
+            color: #cbd5e1;
+            border: 1px solid #1e293b;
+            border-radius: 0.25rem;
+        }
+
+        /* TEAM SECTION */
+        .team-bg {
+            background-color: rgba(15, 23, 42, 0.5);
+            border-top: 1px solid #1e293b;
+            border-bottom: 1px solid #1e293b;
+        }
+
+        .grid-4 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .team-card {
+            background-color: rgba(15, 23, 42, 0.8);
+            border: 1px solid #1e293b;
+            border-radius: 0.75rem;
+            padding: 1.5rem;
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .team-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .avatar {
+            width: 5rem;
+            height: 5rem;
+            border-radius: 50%;
+            object-fit: cover;
+            margin: 0 auto 1rem auto;
+            border: 2px solid rgba(37, 99, 235, 0.3);
+        }
+
+        .member-name {
+            font-size: 1rem;
+            font-weight: 700;
+            color: #ffffff;
+        }
+
+        .member-role {
+            font-size: 0.75rem;
+            color: #60a5fa;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .member-spec {
+            font-size: 0.75rem;
+            color: #94a3b8;
+            margin-bottom: 1rem;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 0.75rem;
+            color: #94a3b8;
+            font-size: 0.875rem;
+        }
+
+        .social-links a:hover {
+            color: #ffffff;
+        }
+
+        /* CONTACT SECTION */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 3rem;
+        }
+
+        @media (min-width: 992px) {
+            .contact-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        .info-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .info-icon {
+            width: 2.5rem;
+            height: 2.5rem;
+            border-radius: 0.5rem;
+            background-color: rgba(37, 99, 235, 0.1);
+            border: 1px solid rgba(37, 99, 235, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #60a5fa;
+            flex-shrink: 0;
+        }
+
+        .form-box {
+            background-color: #0f172a;
+            border: 1px solid #1e293b;
+            border-radius: 1rem;
+            padding: 2rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.25rem;
+        }
+
+        .form-label {
+            display: block;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: #94a3b8;
+            margin-bottom: 0.4rem;
+        }
+
+        .form-input, .form-select, .form-textarea {
+            width: 100%;
+            background-color: #020617;
+            border: 1px solid #1e293b;
+            border-radius: 0.5rem;
+            padding: 0.65rem 0.85rem;
+            color: #e2e8f0;
+            font-size: 0.875rem;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+
+        .form-input:focus, .form-select:focus, .form-textarea:focus {
+            border-color: #2563eb;
+        }
+
+        .form-textarea {
+            resize: vertical;
+        }
+
+        .status-msg {
+            margin-top: 0.75rem;
+            text-align: center;
+            font-size: 0.8rem;
+            color: #34d399;
+            display: none;
+        }
+
+        /* FOOTER */
+        .footer {
+            background-color: #020617;
+            border-top: 1px solid #0f172a;
+            padding: 2rem 0;
+            font-size: 0.75rem;
+            color: #64748b;
+        }
+
+        .footer-flex {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+        }
+
+        @media (min-width: 640px) {
+            .footer-flex {
+                flex-direction: row;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NAVIGATION -->
+    <nav class="navbar">
+        <div class="container nav-container">
+            <div class="brand">
+                <div class="brand-icon">V</div>
+                <div>
+                    <span class="brand-text-title">VUTADT</span>
+                    <span class="brand-text-sub" style="display:block;">VUT Application & Dev Team</span>
+                </div>
+            </div>
+            <div class="nav-links">
+                <a href="#about" class="nav-link">About</a>
+                <a href="#projects" class="nav-link">Projects</a>
+                <a href="#team" class="nav-link">Team</a>
+                <a href="#contact" class="btn-primary">Contact Us</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <section class="hero" id="about">
+        <div class="container">
+            <div class="hero-content">
+                <div class="badge">
+                    <span class="pulse-dot"></span>
+                    Software Engineering & System Design
+                </div>
+                <h1 class="hero-title">
+                    Building Intelligent Systems for <span class="highlight-text">VUT & Beyond</span>
+                </h1>
+                <p class="hero-description">
+                    We are the official application development unit at Vaal University of Technology. We design, build, and deploy robust web platforms, mobile solutions, and enterprise software systems.
+                </p>
+                <div class="hero-cta">
+                    <a href="#projects" class="btn-primary" style="padding: 0.8rem 1.5rem; font-size: 1rem;">View Our Projects</a>
+                    <a href="#contact" class="btn-secondary" style="padding: 0.8rem 1.5rem; font-size: 1rem;">Request a System</a>
+                </div>
+            </div>
+
+            <!-- METRICS BAR -->
+            <div class="metrics-grid">
+                <div class="metric-card">
+                    <div class="metric-value" id="stat-projects">0+</div>
+                    <div class="metric-label">Active Systems</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-value" id="stat-members">0</div>
+                    <div class="metric-label">Core Developers</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-value">99.9%</div>
+                    <div class="metric-label">Target Uptime</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-value">100%</div>
+                    <div class="metric-label">Custom Built</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PROJECTS SECTION -->
+    <section class="section-padding container" id="projects">
+        <div class="section-header">
+            <div>
+                <h2 class="section-title">Deployed Systems & Projects</h2>
+                <p class="section-subtitle">Explore solutions created and maintained by the VUTADT engineering team.</p>
+            </div>
+            <!-- FILTER BUTTONS -->
+            <div class="filter-group" id="category-filters">
+                <button onclick="filterProjects('all', this)" class="filter-btn active">All</button>
+                <button onclick="filterProjects('Web', this)" class="filter-btn">Web Apps</button>
+                <button onclick="filterProjects('Mobile', this)" class="filter-btn">Mobile</button>
+                <button onclick="filterProjects('Infrastructure', this)" class="filter-btn">Infrastructure</button>
+            </div>
+        </div>
+
+        <!-- PROJECTS GRID -->
+        <div class="grid-3" id="projects-container">
+            <!-- Dynamic Injection -->
+        </div>
+    </section>
+
+    <!-- TEAM SECTION -->
+    <section class="section-padding team-bg" id="team">
+        <div class="container">
+            <div style="text-align: center; max-width: 600px; margin: 0 auto 3rem auto;">
+                <h2 class="section-title">The Development Team</h2>
+                <p class="section-subtitle">The engineers, architects, and designers responsible for VUTADT software systems.</p>
+            </div>
+
+            <!-- TEAM GRID -->
+            <div class="grid-4" id="team-container">
+                <!-- Dynamic Injection -->
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACT & REQUEST SECTION -->
+    <section class="section-padding container" id="contact">
+        <div class="contact-grid">
+            <div>
+                <h2 class="section-title">Partner with VUTADT</h2>
+                <p class="section-subtitle" style="margin-bottom: 2rem; line-height: 1.6;">
+                    Have a system request, departmental software need, or technical inquiry? Submit your project details below and our team will get back to you.
+                </p>
+
+                <div>
+                    <div class="info-item">
+                        <div class="info-icon">
+                            <i class="fa-solid fa-building-columns"></i>
+                        </div>
+                        <div>
+                            <h4 style="font-size: 0.9rem; font-weight: 600; color: #ffffff;">Campus Location</h4>
+                            <p style="font-size: 0.85rem; color: #94a3b8;">Vaal University of Technology, Vanderbijlpark, South Africa</p>
+                        </div>
+                    </div>
+
+                    <div class="info-item">
+                        <div class="info-icon">
+                            <i class="fa-solid fa-envelope"></i>
+                        </div>
+                        <div>
+                            <h4 style="font-size: 0.9rem; font-weight: 600; color: #ffffff;">Email Inquiries</h4>
+                            <p style="font-size: 0.85rem; color: #94a3b8;">vutadt@vut.ac.za</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CONTACT FORM -->
+            <div class="form-box">
+                <form id="contact-form" onsubmit="handleContactSubmit(event)">
+                    <div class="form-group">
+                        <label class="form-label">Your Name</label>
+                        <input type="text" required class="form-input" placeholder="Full Name">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Email Address</label>
+                        <input type="email" required class="form-input" placeholder="name@vut.ac.za">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Project Category</label>
+                        <select class="form-select">
+                            <option>System Request</option>
+                            <option>Bug Report / Maintenance</option>
+                            <option>Departmental Partnership</option>
+                            <option>General Inquiry</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">System Requirements / Message</label>
+                        <textarea rows="4" required class="form-textarea" placeholder="Briefly describe the application or system..."></textarea>
+                    </div>
+                    <button type="submit" class="btn-primary" style="width: 100%;">
+                        Submit Request
+                    </button>
+                    <div id="form-status" class="status-msg">
+                        Message received! The VUTADT team will review your inquiry.
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="container footer-flex">
+            <p>&copy; 2026 Vaal University of Technology Application and Development Team (VUTADT). All rights reserved.</p>
+            <div class="social-links">
+                <a href="#"><i class="fa-brands fa-github"></i></a>
+                <a href="#"><i class="fa-brands fa-linkedin"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- DYNAMIC DATA & INTERACTIVITY SCRIPT -->
+    <script>
+        // SYSTEM DATA
+        const projectsData = [
+            {
+                id: 1,
+                title: "VUT Shared Green-Grid Initiative",
+                category: "Infrastructure",
+                description: "Sustainable energy tracking platform designed for SME solar infrastructure monitoring and distribution.",
+                techStack: ["React", "PHP", "MySQL", "CSS Grid"],
+                status: "Live Production"
+            },
+            {
+                id: 2,
+                title: "Language Learning Mobile App",
+                category: "Mobile",
+                description: "Cross-platform mobile application featuring interactive modules, file-based navigation, and custom database syncing.",
+                techStack: ["React Native", "Expo", "JavaScript", "REST API"],
+                status: "Beta"
+            },
+            {
+                id: 3,
+                title: "Student Portal & Systems Hub",
+                category: "Web",
+                description: "Centralized internal dashboard system for application submissions and academic status updates.",
+                techStack: ["PHP", "MySQL", "JavaScript", "Custom CSS"],
+                status: "Maintained"
+            }
+        ];
+
+        const teamData = [
+            {
+                name: "Development Lead",
+                role: "Full-Stack Engineer",
+                specialty: "PHP / MySQL / React Native",
+                avatar: "Kamo.jpg"
+            },
+            {
+                name: "Systems Architect",
+                role: "Backend & Database Lead",
+                specialty: "API Design / Database Schema / Linux",
+                avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=300"
+            },
+            {
+                name: "UI/UX Designer",
+                role: "Frontend Engineer",
+                specialty: "Pure CSS / JavaScript / Prototyping",
+                avatar: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&q=80&w=300"
+            },
+            {
+                name: "Mobile App Specialist",
+                role: "Mobile Engineer",
+                specialty: "React Native / Expo / UI Components",
+                avatar: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&q=80&w=300"
+            }
+        ];
+
+        // RENDER PROJECTS
+        function renderProjects(category = 'all') {
+            const container = document.getElementById('projects-container');
+            const filtered = category === 'all' 
+                ? projectsData 
+                : projectsData.filter(p => p.category === category);
+
+            container.innerHTML = filtered.map(p => `
+                <div class="card">
+                    <div class="card-top">
+                        <div class="card-header-meta">
+                            <span class="cat-tag">${p.category}</span>
+                            <span class="status-tag">
+                                <span class="status-dot"></span>
+                                ${p.status}
+                            </span>
+                        </div>
+                        <h3 class="card-title">${p.title}</h3>
+                        <p class="card-desc">${p.description}</p>
+                    </div>
+                    <div>
+                        <div class="tech-stack">
+                            ${p.techStack.map(tech => `<span class="tech-pill">${tech}</span>`).join('')}
+                        </div>
+                        <button class="btn-secondary" style="width: 100%; font-size: 0.75rem;">
+                            View Documentation
+                        </button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // RENDER TEAM
+        function renderTeam() {
+            const container = document.getElementById('team-container');
+            container.innerHTML = teamData.map(m => `
+                <div class="team-card">
+                    <img src="${m.avatar}" alt="${m.name}" class="avatar">
+                    <h3 class="member-name">${m.name}</h3>
+                    <p class="member-role">${m.role}</p>
+                    <p class="member-spec">${m.specialty}</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fa-brands fa-github"></i></a>
+                        <a href="#"><i class="fa-brands fa-linkedin"></i></a>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // FILTER CONTROL
+        function filterProjects(cat, btnElement) {
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            btnElement.classList.add('active');
+            renderProjects(cat);
+        }
+
+        // CONTACT FORM HANDLING
+        function handleContactSubmit(e) {
+            e.preventDefault();
+            const status = document.getElementById('form-status');
+            status.style.display = 'block';
+            e.target.reset();
+            setTimeout(() => {
+                status.style.display = 'none';
+            }, 5000);
+        }
+
+        // INITIALIZATION
+        document.addEventListener('DOMContentLoaded', () => {
+            renderProjects();
+            renderTeam();
+            
+            // Set Stats
+            document.getElementById('stat-projects').innerText = `${projectsData.length}+`;
+            document.getElementById('stat-members').innerText = teamData.length;
+        });
+    </script>
+</body>
+</html>
